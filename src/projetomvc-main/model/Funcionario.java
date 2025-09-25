@@ -2,18 +2,18 @@ package model;
 
 public class Funcionario {
     private String nome;
-    private double cpf;
+    private String cpf; // alterado para String, mas mantive o nome
     private String categoria;
-<<<<<<< HEAD
+
     private String rua;
     private String bairro;
     private int Ndacasa;
     private String cidade;
     private String estado;
     private String cep;
-    private double telefone;
+    private String telefone; // alterado para String, mas mantive o nome
 
-    public Funcionario(String nome, double cpf, String categoria, String rua, String bairro, int Ndacasa, String cidade, String estado, String cep, double telefone) {
+    public Funcionario(String nome, String cpf, String categoria, String rua, String bairro, int Ndacasa, String cidade, String estado, String cep, String telefone) {
         this.nome = nome;
         this.cpf = cpf;
         this.categoria = categoria;
@@ -34,11 +34,11 @@ public class Funcionario {
         this.nome = nome;
     }
 
-    public double getCpf() {
+    public String getCpf() { // continua com nome cpf
         return cpf;
     }
 
-    public void setCpf(double cpf) {
+    public void setCpf(String cpf) { // continua com nome cpf
         this.cpf = cpf;
     }
 
@@ -98,32 +98,12 @@ public class Funcionario {
         this.cep = cep;
     }
 
-    public double getTelefone() {
+    public String getTelefone() { // nome igual
         return telefone;
     }
 
-    public void setTelefone(double telefone) {
+    public void setTelefone(String telefone) { // nome igual
         this.telefone = telefone;
     }
 }
 
-   
-=======
-    private String endereco;
-    private double telefone;
-
-    public Funcionario(String nome, double cpf, String categoria, String endereco, double telefone) {
-        this.nome = nome;
-        this.cpf = cpf;
-        this.categoria = categoria;
-        this.endereco = endereco;
-        this.telefone = telefone;
-    }
-
-    public String getNome() { return nome; }
-    public double getCpf() { return cpf; }
-    public String getCategoria() { return categoria; }
-    public String getEndereco() { return endereco; }
-    public double getTelefone() { return telefone; }
-}
->>>>>>> 5b0563573f0971f6e6555c6125a1c3676340252b

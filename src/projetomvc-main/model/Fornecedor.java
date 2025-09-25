@@ -7,24 +7,23 @@ public class Fornecedor {
     private String CNPJ;
     private String representante;
     private String telefone;
-<<<<<<< HEAD
+
     private String rua;
     private String bairro;
     private int Ndacasa;
     private String cidade;
     private String estado;
     private String cep;
-=======
->>>>>>> 5b0563573f0971f6e6555c6125a1c3676340252b
 
-    public Fornecedor(int idFornecedor, String nome, String email, String CNPJ, String representante, String telefone) {
+    public Fornecedor(int idFornecedor, String nome, String email, String CNPJ, String representante, String telefone,
+                      String rua, String bairro, int Ndacasa, String cidade, String estado, String cep) {
         this.idFornecedor = idFornecedor;
         this.nome = nome;
         this.email = email;
         this.CNPJ = CNPJ;
         this.representante = representante;
         this.telefone = telefone;
-<<<<<<< HEAD
+
         this.rua = rua;
         this.bairro = bairro;
         this.Ndacasa = Ndacasa;
@@ -36,7 +35,6 @@ public class Fornecedor {
     public int getIdFornecedor() {
         return idFornecedor;
     }
-
     public void setIdFornecedor(int idFornecedor) {
         this.idFornecedor = idFornecedor;
     }
@@ -44,7 +42,6 @@ public class Fornecedor {
     public String getNome() {
         return nome;
     }
-
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -52,7 +49,6 @@ public class Fornecedor {
     public String getEmail() {
         return email;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
@@ -60,7 +56,6 @@ public class Fornecedor {
     public String getCNPJ() {
         return CNPJ;
     }
-
     public void setCNPJ(String CNPJ) {
         this.CNPJ = CNPJ;
     }
@@ -68,7 +63,6 @@ public class Fornecedor {
     public String getRepresentante() {
         return representante;
     }
-
     public void setRepresentante(String representante) {
         this.representante = representante;
     }
@@ -76,7 +70,6 @@ public class Fornecedor {
     public String getTelefone() {
         return telefone;
     }
-
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
@@ -84,7 +77,6 @@ public class Fornecedor {
     public String getRua() {
         return rua;
     }
-
     public void setRua(String rua) {
         this.rua = rua;
     }
@@ -92,7 +84,6 @@ public class Fornecedor {
     public String getBairro() {
         return bairro;
     }
-
     public void setBairro(String bairro) {
         this.bairro = bairro;
     }
@@ -100,7 +91,6 @@ public class Fornecedor {
     public int getNdacasa() {
         return Ndacasa;
     }
-
     public void setNdacasa(int Ndacasa) {
         this.Ndacasa = Ndacasa;
     }
@@ -108,7 +98,6 @@ public class Fornecedor {
     public String getCidade() {
         return cidade;
     }
-
     public void setCidade(String cidade) {
         this.cidade = cidade;
     }
@@ -116,7 +105,6 @@ public class Fornecedor {
     public String getEstado() {
         return estado;
     }
-
     public void setEstado(String estado) {
         this.estado = estado;
     }
@@ -124,22 +112,7 @@ public class Fornecedor {
     public String getCep() {
         return cep;
     }
-
     public void setCep(String cep) {
         this.cep = cep;
     }
- 
 }
-
-    
-=======
-    }
-
-    public int getIdFornecedor() { return idFornecedor; }
-    public String getNome() { return nome; }
-    public String getEmail() { return email; }
-    public String getCNPJ() { return CNPJ; }
-    public String getRepresentante() { return representante; }
-    public String getTelefone() { return telefone; }
-}
->>>>>>> 5b0563573f0971f6e6555c6125a1c3676340252b

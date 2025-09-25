@@ -9,7 +9,7 @@ public class estoquedao {
 
     public void salvar(Estoque estoque) {
         listaEstoques.add(estoque);
-        System.out.println("Estoque salvo com sucesso!");
+        //System.out.println("Estoque salvo com sucesso!");
     }
 
     public List<Estoque> listarTodos() {
