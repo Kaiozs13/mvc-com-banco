@@ -4,7 +4,7 @@ import model.Venda;
 import model.Produtos;
 
 public class VendaController {
-    public Venda criarVenda(int idVenda, Produtos produto, int quantidade, double precoUnitario, String dataVenda, String nomeCliente) {
+    public Venda criarVenda(String idVenda, Produtos produto, int quantidade, double precoUnitario, String dataVenda, String nomeCliente) {
         return new Venda(idVenda, produto, quantidade, precoUnitario, dataVenda, nomeCliente);
     }
 

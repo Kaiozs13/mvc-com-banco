@@ -71,11 +71,11 @@ public class main {
                     System.out.print("Data Última Saída: ");
                     String saida = sc.nextLine();
 
-                    Produtos prod = produtoController.criarProduto(
+                    Produtos produto = produtoController.criarProduto(
                             idP, nomeP, desc, categoriaP, fab, preco, val,
                             qtd, local, entrada, saida
                     );
-                    produtoDAO.salvar(prod);
+                    produtoDAO.salvar(produto);
                     break;
 
                 case 2: // CADASTRO FORNECEDOR
@@ -112,30 +112,46 @@ public class main {
                     fornecedorDAO.salvar(f);
                     break;
 
-                case 3: // CADASTRO DE VENDA
+                case 3: // CADASTRO VENDA
                     System.out.print("ID Venda: ");
-                    int idV = sc.nextInt();
-                    sc.nextLine();
-                    System.out.print("ID Produto: ");
-                    String idProdV = sc.nextLine();
-                    Produtos prodV = produtoDAO.buscarPorId(idProdV);
-                    if (prodV == null) {
-                        System.out.println("Produto não encontrado!");
-                        break;
-                    }
-                    System.out.print("Quantidade Vendida: ");
-                    int qtdV = sc.nextInt();
-                    sc.nextLine();
-                    System.out.print("Preço Unitário: ");
-                    double precoV = sc.nextDouble();
-                    sc.nextLine();
-                    System.out.print("Data Venda: ");
-                    String dataV = sc.nextLine();
-                    System.out.print("Nome Cliente: ");
-                    String clienteV = sc.nextLine();
+                    String idVenda = sc.nextLine();
 
-                    Venda venda = vendaController.criarVenda(idV, prodV, qtdV, precoV, dataV, clienteV);
-                    vendaDAO.salvar(venda);
+                    System.out.print("CPF do Cliente: ");
+                    String cpfCliente = sc.nextLine();
+
+                    Cliente clienteVenda = clienteDAO.buscarPorCPF(cpfCliente);
+                    String clienteId = (clienteVenda != null) ? clienteVenda.getCPF() : cpfCliente;
+
+                    System.out.print("Quantos produtos foram vendidos nesta venda? ");
+                    int numProdutos = sc.nextInt();
+                    sc.nextLine();
+
+                    for (int i = 0; i < numProdutos; i++) {
+                        Produtos produtoVenda = null;
+
+                        while (produtoVenda == null) {
+                            System.out.println("\n--- Produto " + (i + 1) + " ---");
+                            System.out.print("ID do Produto: ");
+                            String idProd = sc.nextLine();
+
+                            produtoVenda = produtoDAO.buscarPorId(idProd);
+                            if (produtoVenda == null) {
+                                System.out.println("Produto não encontrado! Tente novamente.");
+                            }
+                        }
+
+                        System.out.print("Quantidade vendida: ");
+                        int qtdV = sc.nextInt();
+                        sc.nextLine();
+                        System.out.print("Preço unitário: ");
+                        double precoV = sc.nextDouble();
+                        sc.nextLine();
+                        System.out.print("Data da venda: ");
+                        String dataV = sc.nextLine();
+
+                        Venda venda = vendaController.criarVenda(idVenda, produtoVenda, qtdV, precoV, dataV, clienteId);
+                        vendaDAO.salvar(venda);
+                    }
                     break;
 
                 case 4: // CADASTRO CONVÊNIO
@@ -162,8 +178,8 @@ public class main {
                     System.out.print("CPF: ");
                     String cpfC = sc.nextLine();
 
-                    Cliente cliente = clienteController.criarCliente(nomeC, emailC, cpfC);
-                    clienteDAO.salvar(codCliente, cliente);
+                    Cliente clienteNovo = clienteController.criarCliente(nomeC, emailC, cpfC);
+                    clienteDAO.salvar(clienteNovo);
                     break;
 
                 case 6: // CADASTRO FUNCIONÁRIO

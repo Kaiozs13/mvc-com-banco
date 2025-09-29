@@ -14,10 +14,7 @@ public class Produtos {
     private String dataEntrada;
     private String dataUltimaSaida;
 
-    public Produtos(String idProduto, String nome, String descricao, String categoria,
-                   String fabricante, double preco, String dataValidade,
-                   int quantidadeAtual, String localArmazenamento,
-                   String dataEntrada, String dataUltimaSaida) {
+    public Produtos(String idProduto, String nome, String descricao, String categoria, String fabricante, double preco, String dataValidade, int quantidadeAtual, String localArmazenamento, String dataEntrada, String dataUltimaSaida) {
         this.idProduto = idProduto;
         this.nome = nome;
         this.descricao = descricao;

@@ -13,7 +13,7 @@ public class produtoscontr {
     }
 
     public void exibirProduto(Produtos produto) {
-        System.out.println("Produto: " + produto.getNome() + " | Preço: " + produto.getPreco() +
+        System.out.println("ID: " + produto.getIdProduto() + " | Produto: " + produto.getNome() + " | Preço: " + produto.getPreco() +
                 " | Quantidade: " + produto.getQuantidadeAtual());
     }
 }

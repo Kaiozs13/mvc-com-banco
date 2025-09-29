@@ -45,7 +45,7 @@ public class produtosdao {
                 return new Produtos(
                         rs.getString("IdProduto"),
                         rs.getString("Nome"),
-                        rs.getString("Produtos"),
+                        rs.getString("Descricao"),
                         rs.getString("Categoria"),
                         rs.getString("Fabricante"),
                         rs.getDouble("Preco"),
@@ -74,7 +74,7 @@ public class produtosdao {
                 Produtos p = new Produtos(
                         rs.getString("IdProduto"),
                         rs.getString("Nome"),
-                        rs.getString("Produtos"),
+                        rs.getString("Descricao"),
                         rs.getString("Categoria"),
                         rs.getString("Fabricante"),
                         rs.getDouble("Preco"),
