@@ -1,7 +1,7 @@
 package model;
 
 public class Fornecedor {
-    private int idFornecedor;
+    private String idFornecedor;  // agora é String
     private String nome;
     private String email;
     private String CNPJ;
@@ -15,7 +15,7 @@ public class Fornecedor {
     private String estado;
     private String cep;
 
-    public Fornecedor(int idFornecedor, String nome, String email, String CNPJ, String representante, String telefone,
+    public Fornecedor(String idFornecedor, String nome, String email, String CNPJ, String representante, String telefone,
                       String rua, String bairro, int Ndacasa, String cidade, String estado, String cep) {
         this.idFornecedor = idFornecedor;
         this.nome = nome;
@@ -32,10 +32,10 @@ public class Fornecedor {
         this.cep = cep;
     }
 
-    public int getIdFornecedor() {
+    public String getIdFornecedor() {
         return idFornecedor;
     }
-    public void setIdFornecedor(int idFornecedor) {
+    public void setIdFornecedor(String idFornecedor) {
         this.idFornecedor = idFornecedor;
     }
 
