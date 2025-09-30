@@ -44,8 +44,11 @@ public class main {
             int opc = sc.nextInt();
             sc.nextLine(); // consumir ENTER
 
+
             switch (opc) {
                 case 1: // CADASTRO DE PRODUTO + ESTOQUE
+                    System.out.println("\n--- CADASTRO DE PRODUTO ---\n");
+
                     System.out.print("ID Produto: ");
                     String idP = sc.nextLine();
                     System.out.print("Nome: ");
@@ -78,7 +81,10 @@ public class main {
                     produtoDAO.salvar(produto);
                     break;
 
+
                 case 2: // CADASTRO FORNECEDOR
+                    System.out.println("\n--- CADASTRO DE FORNECEDOR ---\n");
+
                     System.out.print("ID Fornecedor: ");
                     String idF = sc.nextLine();
                     System.out.print("Nome: ");
@@ -100,7 +106,7 @@ public class main {
                     sc.nextLine();
                     System.out.print("Cidade: ");
                     String cidade = sc.nextLine();
-                    System.out.print("Estado: ");
+                    System.out.print("Estado(Sigla): ");
                     String estado = sc.nextLine();
                     System.out.print("CEP: ");
                     String cep = sc.nextLine();
@@ -112,7 +118,10 @@ public class main {
                     fornecedorDAO.salvar(f);
                     break;
 
+
                 case 3: // CADASTRO VENDA
+                    System.out.println("\n--- CADASTRO DE VENDA ---\n");
+
                     System.out.print("ID Venda: ");
                     String idVenda = sc.nextLine();
 
@@ -154,13 +163,16 @@ public class main {
                     }
                     break;
 
+
                 case 4: // CADASTRO CONVÊNIO
+                    System.out.println("\n--- CADASTRO DE CONVÊNIO ---\n");
+
                     System.out.print("ID Convênio: ");
-                    int idC = sc.nextInt();
-                    sc.nextLine();
+                    String idC = sc.nextLine();
+
                     System.out.print("Desconto: ");
-                    int desconto = sc.nextInt();
-                    sc.nextLine();
+                    String desconto = sc.nextLine();
+
                     System.out.print("CNPJ: ");
                     String cnpjC = sc.nextLine();
 
@@ -168,7 +180,10 @@ public class main {
                     convenioDAO.salvar(conv);
                     break;
 
+
                 case 5: // CADASTRO CLIENTE
+                    System.out.println("\n--- CADASTRO DE CLIENTE ---\n");
+
                     System.out.print("ID Cliente: ");
                     String codCliente = sc.nextLine();
                     System.out.print("Nome: ");
@@ -182,7 +197,10 @@ public class main {
                     clienteDAO.salvar(clienteNovo);
                     break;
 
+
                 case 6: // CADASTRO FUNCIONÁRIO
+                    System.out.println("\n--- CADASTRO DE FUNCIONÁRIO ---\n");
+
                     System.out.print("ID Funcionário: ");
                     String codigoFunc = sc.nextLine();
                     System.out.print("Nome: ");
@@ -200,7 +218,7 @@ public class main {
                     sc.nextLine();
                     System.out.print("Cidade: ");
                     String cidadeFunc = sc.nextLine();
-                    System.out.print("Estado: ");
+                    System.out.print("Estado(Sigla): ");
                     String estadoFunc = sc.nextLine();
                     System.out.print("CEP: ");
                     String cepFunc = sc.nextLine();
@@ -214,24 +232,49 @@ public class main {
                     funcionarioDAO.salvar(codigoFunc, func);
                     break;
 
+
                 case 7: // LISTAR PRODUTOS
+                    System.out.println("\n--- LISTA DE PRODUTOS ---");
                     produtoDAO.listarTodos().forEach(produtoController::exibirProduto);
+                    System.out.println("-------------------------");
                     break;
+
+
                 case 8:
+                    System.out.println("\n--- LISTA DE FORNECEDORES ---");
                     fornecedorDAO.listarTodos().forEach(fornecedorController::exibirFornecedor);
+                    System.out.println("-----------------------------");
                     break;
+
+
                 case 9:
+                    System.out.println("\n--- LISTA DE VENDAS ---");
                     vendaDAO.listarTodos().forEach(vendaController::exibirVenda);
+                    System.out.println("-----------------------");
                     break;
+
+
                 case 10:
+                    System.out.println("\n--- LISTA DE CONVÊNIOS ---");
                     convenioDAO.listarTodos().forEach(convenioController::exibirConvenio);
+                    System.out.println("--------------------------");
                     break;
+
+
                 case 11:
+                    System.out.println("\n--- LISTA DE FUNCIONÁRIOS ---");
                     funcionarioDAO.listarTodos().forEach(funcionarioController::exibirFuncionario);
+                    System.out.println("-----------------------------");
                     break;
+
+
                 case 12:
+                    System.out.println("\n--- LISTA DE CLIENTES ---");
                     clienteDAO.listarTodos().forEach(clienteController::exibirCliente);
+                    System.out.println("-------------------------");
                     break;
+
+
                 case 0:
                     sair = true;
                     break;

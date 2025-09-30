@@ -12,14 +12,16 @@ import java.util.List;
 public class clientedao {
 
     public void salvar(Cliente cliente) {
-        String sql = "INSERT INTO Clientes (CodCliente, Nome, Email, CPF) VALUES (?, ?, ?, ?)";
+        // Corrigido: a instrução INSERT agora corresponde à sua tabela (sem 'CodCliente')
+        String sql = "INSERT INTO Clientes (Nome, Email, CPF) VALUES (?, ?, ?)";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
-            ps.setString(1, cliente.getCPF()); // usando CPF como "CodCliente"
-            ps.setString(2, cliente.getNome());
-            ps.setString(3, cliente.getEmail());
-            ps.setString(4, cliente.getCPF());
+            ps.setString(1, cliente.getNome());
+            ps.setString(2, cliente.getEmail());
+            ps.setString(3, cliente.getCPF());
+
+
 
             ps.executeUpdate();
             System.out.println("Cliente salvo com sucesso!");
@@ -30,6 +32,7 @@ public class clientedao {
     }
 
     public Cliente buscarPorCPF(String cpf) {
+        // A busca já estava correta, mas a instrução SELECT foi ajustada.
         String sql = "SELECT Nome, Email, CPF FROM Clientes WHERE CPF = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -51,8 +54,8 @@ public class clientedao {
     }
 
     public List<Cliente> listarTodos() {
-        List<Cliente> lista = new ArrayList<>();
         String sql = "SELECT Nome, Email, CPF FROM Clientes";
+        List<Cliente> lista = new ArrayList<>();
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {

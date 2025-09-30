@@ -1,0 +1,146 @@
+CREATE DATABASE mvcfarmacia;
+USE mvcfarmacia;
+
+CREATE TABLE Produtos (
+    IdProduto VARCHAR(5) NOT NULL,
+    Nome VARCHAR(50) NOT NULL,
+    Descricao VARCHAR(200) NOT NULL,
+    Categoria VARCHAR(30) NOT NULL,
+    Fabricante VARCHAR(50) NOT NULL,
+    Preco DECIMAL(10,2) NOT NULL,
+    DataDeValidade VARCHAR(50) NOT NULL,
+    QuantidadeAtual INT NOT NULL DEFAULT 0,
+    LocalArmazenamento VARCHAR(100),
+    DataEntrada VARCHAR(50),
+    DataUltimaSaida VARCHAR(50),
+    PRIMARY KEY (IdProduto)
+);
+
+
+
+CREATE TABLE Fornecedores (
+    IdFornecedor VARCHAR(5) NOT NULL,
+    Nome VARCHAR(70) NOT NULL,
+    Email VARCHAR(50) NOT NULL,
+    CNPJ VARCHAR(14) NOT NULL, 
+    Representante VARCHAR(200) NOT NULL,
+    PRIMARY KEY (IdFornecedor)
+);
+
+
+CREATE TABLE TelefonesFornecedores (
+    Numero VARCHAR(15) NOT NULL,
+    IdFornecedor VARCHAR(5) NOT NULL,
+    PRIMARY KEY (Numero),
+    FOREIGN KEY (IdFornecedor) REFERENCES Fornecedores(IdFornecedor)
+);
+
+
+CREATE TABLE EnderecosFor (
+    Rua VARCHAR(100) NOT NULL,
+    Numero VARCHAR(10) NOT NULL,
+    Bairro VARCHAR(50) NOT NULL,
+    Cidade VARCHAR(50) NOT NULL,
+    Estado VARCHAR(2) NOT NULL,
+    CEP VARCHAR(9) NOT NULL,
+    IdFornecedor VARCHAR(5) NULL,
+    PRIMARY KEY (CEP),
+    FOREIGN KEY (IdFornecedor) REFERENCES Fornecedores(IdFornecedor)
+);
+
+
+CREATE TABLE Clientes (
+    Nome VARCHAR(30) NOT NULL,
+    Email VARCHAR(60) NOT NULL,
+    CPF VARCHAR(11) NOT NULL,
+    PRIMARY KEY (CPF)
+);
+
+
+CREATE TABLE Funcionarios (
+    CodFuncionario VARCHAR(5) NOT NULL,
+    Nome VARCHAR(50) NOT NULL,
+    CPF VARCHAR(11) NOT NULL,
+    Categoria VARCHAR(50) NOT NULL,
+    Rua VARCHAR(100),
+    Numero INT,
+    Bairro VARCHAR(50),
+    Cidade VARCHAR(50),
+    Estado VARCHAR(2),
+    CEP VARCHAR(9),
+    Telefone VARCHAR(15),
+    PRIMARY KEY (CodFuncionario)
+);
+
+
+CREATE TABLE Vendas (
+    IdVenda VARCHAR(5) NOT NULL,
+    IdProduto VARCHAR(5) NOT NULL,
+    Quantidade INT NOT NULL,
+    PrecoUnitario DECIMAL(10,2) NOT NULL,
+    DataVenda VARCHAR(50) NOT NULL,
+    CPF VARCHAR(15), 
+    PRIMARY KEY (IdVenda, IdProduto),
+    FOREIGN KEY (IdProduto) REFERENCES Produtos(IdProduto),
+    FOREIGN KEY (CPF) REFERENCES Clientes(CPF)
+);
+
+
+
+CREATE TABLE Convenios (
+    IdConvenio VARCHAR(5) NOT NULL,
+    Desconto VARCHAR(14) NOT NULL,
+    CNPJ VARCHAR(14) NOT NULL,
+    PRIMARY KEY (IdConvenio)
+);
+
+CREATE TABLE EnderecosFun (
+    IdEndereco INT AUTO_INCREMENT PRIMARY KEY,
+    Rua VARCHAR(100) NOT NULL,
+    Numero INT NOT NULL,
+    Bairro VARCHAR(50) NOT NULL,
+    Cidade VARCHAR(50) NOT NULL,
+    Estado VARCHAR(50) NOT NULL,
+    CEP VARCHAR(15) NOT NULL,
+    CodFuncionario VARCHAR(5), 
+    FOREIGN KEY (CodFuncionario) REFERENCES Funcionarios(CodFuncionario)
+);
+
+CREATE TABLE TelefonesFuncionarios (
+    Numero VARCHAR(15) NOT NULL,
+    CodFuncionario VARCHAR(5) NOT NULL,
+    PRIMARY KEY (Numero),
+    FOREIGN KEY (CodFuncionario) REFERENCES Funcionarios(CodFuncionario)
+);
+
+
+
+
+SELECT * FROM Clientes;
+SELECT * FROM Fornecedores;
+SELECT * FROM Funcionarios;
+SELECT * FROM TelefonesFuncionarios;
+SELECT * FROM TelefonesFornecedores;
+SELECT * FROM Produtos;
+SELECT * FROM Vendas;
+SELECT * FROM Convenios;
+SELECT * FROM EnderecosFun;
+SELECT * FROM EnderecosFor;
+
+ALTER TABLE Fornecedores
+DROP COLUMN Telefone;
+
+ALTER TABLE Produtos 
+ADD COLUMN QuantidadeAtual INT NOT NULL,
+ADD COLUMN LocalArmazenamento VARCHAR(50) NOT NULL,
+ADD COLUMN DataEntrada VARCHAR(50) NOT NULL,
+ADD COLUMN DataUltimaSaida VARCHAR(50);
+ALTER TABLE Convenios MODIFY Desconto VARCHAR(10) NOT NULL;
+ALTER TABLE Produtos MODIFY IdProduto VARCHAR(10) NOT NULL;
+ALTER TABLE Funcionarios CHANGE Categoria CategoriaFunc VARCHAR(50) NOT NULL;
+
+ALTER TABLE Funcionarios CHANGE CodFuncionario Codigo VARCHAR(5) NOT NULL;
+ALTER TABLE EnderecosFun CHANGE CodFuncionario Codigo VARCHAR(5) NOT NULL;
+ALTER TABLE TelefonesFuncionarios CHANGE CodFuncionario Codigo VARCHAR(5) NOT NULL;
+
+

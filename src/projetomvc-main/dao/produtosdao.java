@@ -8,7 +8,7 @@ import java.util.List;
 public class produtosdao {
 
     public void salvar(Produtos produto) {
-        String sql = "INSERT INTO Produtos (IdProduto, Nome, Produtos, Preco, Categoria, Fabricante, DataDeValidade, QuantidadeAtual, LocalArmazenamento, DataEntrada, DataUltimaSaida) " +
+        String sql = "INSERT INTO Produtos (IdProduto, Nome, Descricao, Preco, Categoria, Fabricante, DataDeValidade, QuantidadeAtual, LocalArmazenamento, DataEntrada, DataUltimaSaida) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -94,7 +94,7 @@ public class produtosdao {
     }
 
     public void atualizar(Produtos produto) {
-        String sql = "UPDATE Produtos SET Nome=?, Produtos=?, Preco=?, Categoria=?, Fabricante=?, DataDeValidade=?, QuantidadeAtual=?, LocalArmazenamento=?, DataEntrada=?, DataUltimaSaida=? " +
+        String sql = "UPDATE Produtos SET Nome=?, Descricao=?, Preco=?, Categoria=?, Fabricante=?, DataDeValidade=?, QuantidadeAtual=?, LocalArmazenamento=?, DataEntrada=?, DataUltimaSaida=? " +
                 "WHERE IdProduto=?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
