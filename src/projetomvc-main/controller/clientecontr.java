@@ -6,7 +6,7 @@ public class clientecontr {
     
     public Cliente criarCliente(String nome, String email, String cpf) {
         Cliente cliente = new Cliente(nome, email, cpf);
-        cliente.cadastrarCliente(); // Apenas um print no momento
+        cliente.cadastrarCliente();
         return cliente;
     }
 

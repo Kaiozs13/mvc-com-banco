@@ -2,7 +2,7 @@ package dao;
 
 import model.Venda;
 import model.Produtos;
-import model.Cliente; // Importar a classe Cliente
+import model.Cliente;
 import dao.DBConnection;
 
 import java.sql.Connection;
@@ -14,12 +14,10 @@ import java.util.List;
 
 public class VendaDAO {
 
-    // Salvar uma venda
     public void salvar(Venda venda) {
 
-        // --- INÍCIO DA LÓGICA ADICIONAL ---
+
         try (Connection conn = DBConnection.getConnection()) {
-            // Verifica se o cliente já existe no banco de dados
             String sqlCheckCliente = "SELECT COUNT(*) FROM Clientes WHERE CPF = ?";
             try (PreparedStatement psCheck = conn.prepareStatement(sqlCheckCliente)) {
                 psCheck.setString(1, venda.getNomeCliente());
@@ -28,7 +26,7 @@ public class VendaDAO {
                 if (rsCheck.next() && rsCheck.getInt(1) == 0) {
                     System.out.println("Cliente com CPF " + venda.getNomeCliente() + " não encontrado. Cadastrando automaticamente...");
 
-                    // Se o cliente não existe, cria uma nova instância e salva
+
                     clientedao clienteDAO = new clientedao();
                     Cliente clienteNovo = new Cliente();
                     clienteNovo.setCPF(venda.getNomeCliente());
@@ -45,7 +43,7 @@ public class VendaDAO {
             System.err.println("Erro ao verificar/cadastrar cliente. A venda não será salva.");
             return;
         }
-        // --- FIM DA LÓGICA ADICIONAL ---
+
 
         String sql = "INSERT INTO Vendas (IdVenda, IdProduto, Quantidade, PrecoUnitario, DataVenda, CPF) " +
                 "VALUES (?, ?, ?, ?, ?, ?)";
@@ -69,7 +67,7 @@ public class VendaDAO {
         }
     }
 
-    // Listar todas as vendas (sem alterações)
+
     public List<Venda> listarTodos() {
         List<Venda> lista = new ArrayList<>();
         String sql = "SELECT v.IdVenda, v.Quantidade, v.PrecoUnitario, v.DataVenda, v.CPF, " +
@@ -116,7 +114,7 @@ public class VendaDAO {
         return lista;
     }
 
-    // Buscar venda por ID (sem alterações)
+
     public Venda buscarPorId(String idVenda) {
         Venda venda = null;
         String sql = "SELECT v.IdVenda, v.Quantidade, v.PrecoUnitario, v.DataVenda, v.CPF, " +

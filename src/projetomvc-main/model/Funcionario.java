@@ -2,7 +2,7 @@ package model;
 
 public class Funcionario {
     private String nome;
-    private String cpf; // alterado para String, mas mantive o nome
+    private String cpf;
     private String categoria;
 
     private String rua;
@@ -11,7 +11,7 @@ public class Funcionario {
     private String cidade;
     private String estado;
     private String cep;
-    private String telefone; // alterado para String, mas mantive o nome
+    private String telefone;
 
     public Funcionario(String nome, String cpf, String categoria, String rua, String bairro, int Ndacasa, String cidade, String estado, String cep, String telefone) {
         this.nome = nome;

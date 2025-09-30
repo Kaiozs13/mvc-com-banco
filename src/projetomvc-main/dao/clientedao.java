@@ -12,7 +12,6 @@ import java.util.List;
 public class clientedao {
 
     public void salvar(Cliente cliente) {
-        // Corrigido: a instrução INSERT agora corresponde à sua tabela (sem 'CodCliente')
         String sql = "INSERT INTO Clientes (Nome, Email, CPF) VALUES (?, ?, ?)";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -32,7 +31,6 @@ public class clientedao {
     }
 
     public Cliente buscarPorCPF(String cpf) {
-        // A busca já estava correta, mas a instrução SELECT foi ajustada.
         String sql = "SELECT Nome, Email, CPF FROM Clientes WHERE CPF = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {

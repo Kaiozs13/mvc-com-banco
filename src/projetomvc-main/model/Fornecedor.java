@@ -1,7 +1,7 @@
 package model;
 
 public class Fornecedor {
-    private String idFornecedor;  // agora é String
+    private String idFornecedor;
     private String nome;
     private String email;
     private String CNPJ;

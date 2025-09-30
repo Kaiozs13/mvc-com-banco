@@ -26,6 +26,7 @@ public class main {
         boolean sair = false;
         while (!sair) {
             System.out.println("\n=== MENU PRINCIPAL ===");
+
             System.out.println("1 - Cadastrar Produto");
             System.out.println("2 - Cadastrar Fornecedor");
             System.out.println("3 - Cadastrar Venda");
@@ -42,11 +43,11 @@ public class main {
             System.out.print("Escolha: ");
 
             int opc = sc.nextInt();
-            sc.nextLine(); // consumir ENTER
+            sc.nextLine();
 
 
             switch (opc) {
-                case 1: // CADASTRO DE PRODUTO + ESTOQUE
+                case 1:
                     System.out.println("\n--- CADASTRO DE PRODUTO ---\n");
 
                     System.out.print("ID Produto: ");
@@ -82,7 +83,7 @@ public class main {
                     break;
 
 
-                case 2: // CADASTRO FORNECEDOR
+                case 2:
                     System.out.println("\n--- CADASTRO DE FORNECEDOR ---\n");
 
                     System.out.print("ID Fornecedor: ");
@@ -119,7 +120,7 @@ public class main {
                     break;
 
 
-                case 3: // CADASTRO VENDA
+                case 3:
                     System.out.println("\n--- CADASTRO DE VENDA ---\n");
 
                     System.out.print("ID Venda: ");
@@ -164,7 +165,7 @@ public class main {
                     break;
 
 
-                case 4: // CADASTRO CONVÊNIO
+                case 4:
                     System.out.println("\n--- CADASTRO DE CONVÊNIO ---\n");
 
                     System.out.print("ID Convênio: ");
@@ -181,7 +182,7 @@ public class main {
                     break;
 
 
-                case 5: // CADASTRO CLIENTE
+                case 5:
                     System.out.println("\n--- CADASTRO DE CLIENTE ---\n");
 
                     System.out.print("ID Cliente: ");
@@ -198,7 +199,7 @@ public class main {
                     break;
 
 
-                case 6: // CADASTRO FUNCIONÁRIO
+                case 6:
                     System.out.println("\n--- CADASTRO DE FUNCIONÁRIO ---\n");
 
                     System.out.print("ID Funcionário: ");
@@ -233,7 +234,7 @@ public class main {
                     break;
 
 
-                case 7: // LISTAR PRODUTOS
+                case 7:
                     System.out.println("\n--- LISTA DE PRODUTOS ---");
                     produtoDAO.listarTodos().forEach(produtoController::exibirProduto);
                     System.out.println("-------------------------");

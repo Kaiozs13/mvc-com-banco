@@ -20,7 +20,6 @@ public class funcionariodao {
         try (Connection conn = DBConnection.getConnection()) {
             conn.setAutoCommit(false); // tudo ou nada
 
-            // --- Inserir Funcionário
             try (PreparedStatement ps = conn.prepareStatement(sqlFunc)) {
                 ps.setString(1, codigo);
                 ps.setString(2, funcionario.getNome());
@@ -29,14 +28,12 @@ public class funcionariodao {
                 ps.executeUpdate();
             }
 
-            // --- Inserir Telefone
             try (PreparedStatement ps = conn.prepareStatement(sqlTel)) {
                 ps.setString(1, funcionario.getTelefone());
                 ps.setString(2, codigo);
                 ps.executeUpdate();
             }
 
-            // --- Inserir Endereço
             try (PreparedStatement ps = conn.prepareStatement(sqlEnd)) {
                 ps.setString(1, funcionario.getRua());
                 ps.setString(2, String.valueOf(funcionario.getNdacasa()));

@@ -5,17 +5,15 @@ public class Cliente {
     private String email;
     private String CPF;
 
-    // Construtor completo: para quando você tem todos os dados.
+
     public Cliente(String nome, String email, String CPF) {
         this.nome = nome;
         this.email = email;
         this.CPF = CPF;
     }
 
-    // Construtor vazio (sem erros): para quando você precisa criar o objeto
-    // e preencher os dados depois usando os métodos 'set'.
     public Cliente() {
-        // Correção feita aqui: o corpo do construtor foi deixado vazio.
+
     }
 
     public String getNome() {
