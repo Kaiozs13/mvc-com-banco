@@ -14,11 +14,11 @@ public class funcionariodao {
 
     public void salvar(String codigo, Funcionario funcionario) {
         String sqlFunc = "INSERT INTO Funcionarios (Codigo, Nome, CategoriaFunc, CPF) VALUES (?, ?, ?, ?)";
-        String sqlTel  = "INSERT INTO TelefonesFuncionarios (Numero, Codigo) VALUES (?, ?)";
-        String sqlEnd  = "INSERT INTO EnderecosFun (Rua, Numero, Bairro, Cidade, Estado, CEP, Codigo) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sqlTel = "INSERT INTO TelefonesFuncionarios (Numero, Codigo) VALUES (?, ?)";
+        String sqlEnd = "INSERT INTO EnderecosFun (Rua, Numero, Bairro, Cidade, Estado, CEP, Codigo) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DBConnection.getConnection()) {
-            conn.setAutoCommit(false); // tudo ou nada
+            conn.setAutoCommit(false);
 
             try (PreparedStatement ps = conn.prepareStatement(sqlFunc)) {
                 ps.setString(1, codigo);
@@ -36,7 +36,7 @@ public class funcionariodao {
 
             try (PreparedStatement ps = conn.prepareStatement(sqlEnd)) {
                 ps.setString(1, funcionario.getRua());
-                ps.setString(2, String.valueOf(funcionario.getNdacasa()));
+                ps.setInt(2, funcionario.getNdacasa());
                 ps.setString(3, funcionario.getBairro());
                 ps.setString(4, funcionario.getCidade());
                 ps.setString(5, funcionario.getEstado());
@@ -49,6 +49,7 @@ public class funcionariodao {
             System.out.println("Funcionário salvo com sucesso no banco!");
 
         } catch (Exception e) {
+            System.err.println("Erro ao salvar funcionário: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -72,17 +73,22 @@ public class funcionariodao {
                 String cpf = rs.getString("CPF");
                 String categoria = rs.getString("CategoriaFunc");
                 String rua = rs.getString("Rua");
-                String numeroCasa = rs.getString("Numero");
                 String bairro = rs.getString("Bairro");
                 String cidade = rs.getString("Cidade");
                 String estado = rs.getString("Estado");
                 String cep = rs.getString("CEP");
                 String telefone = rs.getString("Telefone");
 
+
+                int numeroCasa = rs.getInt("Numero");
+                if (rs.wasNull()) {
+                    numeroCasa = 0;
+                }
+
                 Funcionario f = new Funcionario(
                         nome, cpf, categoria,
                         rua, bairro,
-                        numeroCasa != null && !numeroCasa.isEmpty() ? Integer.parseInt(numeroCasa) : 0,
+                        numeroCasa,
                         cidade, estado, cep,
                         telefone
                 );
@@ -90,9 +96,52 @@ public class funcionariodao {
             }
 
         } catch (Exception e) {
+            System.err.println("Erro ao listar funcionários: " + e.getMessage());
             e.printStackTrace();
         }
 
         return lista;
+    }
+
+    public Funcionario buscarPorCPF(String cpf) {
+        String sql = "SELECT f.Codigo, f.Nome, f.CategoriaFunc, f.CPF, " +
+                "e.Rua, e.Numero, e.Bairro, e.Cidade, e.Estado, e.CEP, " +
+                "t.Numero AS Telefone " +
+                "FROM Funcionarios f " +
+                "LEFT JOIN EnderecosFun e ON f.Codigo = e.Codigo " +
+                "LEFT JOIN TelefonesFuncionarios t ON f.Codigo = t.Codigo " +
+                "WHERE f.CPF = ?";
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, cpf);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+
+                int numeroCasa = rs.getInt("Numero");
+                if (rs.wasNull()) {
+                    numeroCasa = 0;
+                }
+
+                return new Funcionario(
+                        rs.getString("Nome"),
+                        rs.getString("CPF"),
+                        rs.getString("CategoriaFunc"),
+                        rs.getString("Rua"),
+                        rs.getString("Bairro"),
+                        numeroCasa,
+                        rs.getString("Cidade"),
+                        rs.getString("Estado"),
+                        rs.getString("CEP"),
+                        rs.getString("Telefone")
+                );
+            }
+        } catch (Exception e) {
+            System.err.println("Erro ao buscar funcionário por CPF: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return null;
     }
 }
